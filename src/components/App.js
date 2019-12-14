@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SearchInput from './SearchInput'
+import SearchResult from './SearchResult'
 import { fetchResults } from '../utilities/Helper'
 
 class App extends Component {
@@ -9,7 +10,8 @@ class App extends Component {
 			searchTerm: '',
 			searching: false,
 			page: 0,
-			results: null
+			results: [],
+			total_count: 0
 		}
 	}
 
@@ -22,7 +24,9 @@ class App extends Component {
 	onSearch = searchTerm => {
 		this.setState(
 			{
-				searching: true
+				searching: true,
+				results: [],
+				page: 0
 			},
 			() => {
 				this.search()
@@ -31,24 +35,45 @@ class App extends Component {
 	}
 
 	search = async () => {
-		const { searchTerm, page } = this.state
+		const { searchTerm, page, results } = this.state
 		let res = await fetchResults(searchTerm, page)
 		if (res !== null) {
 			this.setState({
-				results: res.data.data,
-				searching: false
+				results: [...results, ...res.data.data],
+				searching: false,
+				total_count: res.data.pagination.total_count
 			})
 		}
 	}
 
+	loadMore = () => {
+		const { page } = this.state
+		let nextPage = page + 1
+		this.setState(
+			{
+				page: nextPage,
+				searching: true
+			},
+			() => {
+				this.search()
+			}
+		)
+	}
+
 	render() {
-		const { searchTerm } = this.state
+		const { searchTerm, results, searching, total_count } = this.state
 		return (
 			<div className="container-fluid">
 				<SearchInput
 					value={searchTerm}
 					onSearch={this.onSearch}
 					onChange={this.onChange}
+				/>
+				<SearchResult
+					results={results}
+					searching={searching}
+					totalCount={total_count}
+					loadMore={this.loadMore}
 				/>
 			</div>
 		)
