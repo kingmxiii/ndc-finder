@@ -11,7 +11,8 @@ class App extends Component {
 			searching: false,
 			page: 0,
 			results: [],
-			total_count: 0
+			total_count: 0,
+			hasSearched: false
 		}
 	}
 
@@ -41,7 +42,8 @@ class App extends Component {
 			this.setState({
 				results: [...results, ...res.data.data],
 				searching: false,
-				total_count: res.data.pagination.total_count
+				total_count: res.data.pagination.total_count,
+				hasSearched: true
 			})
 		}
 	}
@@ -61,7 +63,14 @@ class App extends Component {
 	}
 
 	render() {
-		const { searchTerm, results, searching, total_count } = this.state
+		const {
+			searchTerm,
+			results,
+			searching,
+			total_count,
+			hasSearched
+		} = this.state
+
 		return (
 			<div className="container-fluid">
 				<SearchInput
@@ -74,6 +83,7 @@ class App extends Component {
 					searching={searching}
 					totalCount={total_count}
 					loadMore={this.loadMore}
+					hasSearched={hasSearched}
 				/>
 			</div>
 		)
