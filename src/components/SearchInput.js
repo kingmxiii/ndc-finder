@@ -1,16 +1,21 @@
 import React from 'react'
+import { Input } from 'antd'
 
-const SearchInput = ({ value, onChange }) => (
+const { Search } = Input
+
+const SearchInput = ({ value, onSearch, onChange }) => (
 	<div className="row">
-		<h1 className="text-center">NDC Finder</h1>
-		<div className="input-group mb-3">
-			<input
-				type="text"
-				className="form-control"
-				placeholder="Search"
-				value={value}
-				onChange={e => onChange(e.target.value)}
-			/>
+		<div className="container">
+			<h1 className="text-center">NDC Finder</h1>
+			<div>
+				<Search
+					type="text"
+					placeholder="Search"
+					value={value}
+					onSearch={onSearch}
+					onChange={e => onChange(e.target.value)}
+				/>
+			</div>
 		</div>
 	</div>
 )
