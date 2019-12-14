@@ -1,13 +1,34 @@
-import React, { Component } from "react";
+import React, { Component } from 'react'
+import SearchInput from './SearchInput'
 
 class App extends Component {
-  render() {
-    return (
-      <div className="container-fluid">
-        <h1>NDC Finder</h1>
-      </div>
-    );
-  }
+	constructor(props) {
+		super(props)
+		this.state = {
+			searchTerm: '',
+			searching: false
+		}
+	}
+
+	onChange = searchTerm => {
+		this.setState(
+			{
+				searchTerm
+			},
+			() => {
+				console.log('Searching: ', this.state.searchTerm)
+			}
+		)
+	}
+
+	render() {
+		const { searchTerm } = this.state
+		return (
+			<div className="container-fluid">
+				<SearchInput value={searchTerm} onChange={this.onChange} />
+			</div>
+		)
+	}
 }
 
-export default App;
+export default App
