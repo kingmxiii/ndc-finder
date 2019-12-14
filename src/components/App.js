@@ -52,7 +52,7 @@ class App extends Component {
 		this.setState(
 			{
 				page: nextPage,
-				searching: true
+				loadingMore: true
 			},
 			() => {
 				this.search()
