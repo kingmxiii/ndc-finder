@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import RingLoader from 'react-spinners/RingLoader'
 
+//This Component display a loader when the searching flag is set to true
+
 const Loadable = ({ loading, children }) => {
 	return loading ? (
 		<div

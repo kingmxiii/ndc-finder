@@ -1,6 +1,8 @@
 import React, { Fragment } from 'react'
 import { Icon } from 'antd'
 
+//This Component display the corresponding message to the app state, when the results array is empty.
+
 const EmptyResult = ({ hasSearched }) => {
 	let iconStyle = { fontSize: '60px' }
 	return (
