@@ -23,9 +23,8 @@ const SearchResult = ({
 							useWindow={false}>
 							<div className="mansory">
 								{results.map(r => (
-									<figure className="mansory-brick">
+									<figure className="mansory-brick" key={r.id}>
 										<img
-											key={r.id}
 											alt="preview"
 											src={r.images.fixed_height.url}
 											className="mansory-img"
