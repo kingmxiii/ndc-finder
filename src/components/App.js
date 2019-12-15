@@ -45,6 +45,11 @@ class App extends Component {
 				total_count: res.data.pagination.total_count,
 				hasSearched: true
 			})
+		} else {
+			this.setState({
+				searching: false,
+				hasSearched: true
+			})
 		}
 	}
 
