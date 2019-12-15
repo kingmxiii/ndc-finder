@@ -6,7 +6,6 @@ const { Search } = Input
 const SearchInput = ({ value, onSearch, onChange }) => (
 	<div className="row mb-5">
 		<div className="container">
-			<h1 className="text-center">NDC Finder</h1>
 			<div>
 				<Search
 					type="text"

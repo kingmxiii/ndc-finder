@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
+import Header from './Header'
+import Footer from './Footer'
 import SearchInput from './SearchInput'
 import SearchResult from './SearchResult'
 import { fetchResults } from '../utilities/Helper'
@@ -77,20 +79,24 @@ class App extends Component {
 		} = this.state
 
 		return (
-			<div className="container-fluid">
-				<SearchInput
-					value={searchTerm}
-					onSearch={this.onSearch}
-					onChange={this.onChange}
-				/>
-				<SearchResult
-					results={results}
-					searching={searching}
-					totalCount={total_count}
-					loadMore={this.loadMore}
-					hasSearched={hasSearched}
-				/>
-			</div>
+			<Fragment>
+				<Header />
+				<div className="container-fluid">
+					<SearchInput
+						value={searchTerm}
+						onSearch={this.onSearch}
+						onChange={this.onChange}
+					/>
+					<SearchResult
+						results={results}
+						searching={searching}
+						totalCount={total_count}
+						loadMore={this.loadMore}
+						hasSearched={hasSearched}
+					/>
+				</div>
+				<Footer />
+			</Fragment>
 		)
 	}
 }
