@@ -12,7 +12,11 @@ const SearchInput = ({ value, onSearch, onChange }) => (
 					type="text"
 					placeholder="Search"
 					value={value}
-					onSearch={onSearch}
+					onSearch={val => {
+						if (val && val !== '') {
+							onSearch(val)
+						}
+					}}
 					onChange={e => onChange(e.target.value)}
 				/>
 			</div>
