@@ -4,7 +4,7 @@ import { Input } from 'antd'
 const { Search } = Input
 
 const SearchInput = ({ value, onSearch, onChange }) => (
-	<div className="row mb-5">
+	<div className="row mb-3">
 		<div className="container">
 			<div>
 				<Search
